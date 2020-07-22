@@ -1,0 +1,3 @@
+system("g++ example.cpp -o ex");
+system("./ex");
+return
