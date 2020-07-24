@@ -9,6 +9,7 @@
 
 int main() {
 	std::string betweenstr("#Hello developers!?");
-	std::cout << stringtools::GetBetweenString(betweenstr, "#", "?") << "\n";
+	std::cout << "String between # and ? : " << stringtools::GetBetweenString(betweenstr, "#", "?") << "\n";
+	std::cout << "L character count : " << stringtools::Count(betweenstr, 'l') << "\n"; // 3
 	return 0;
 }
