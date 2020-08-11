@@ -8,7 +8,11 @@
 #define STRING_TOOLS_HPP
 
 #include <iostream>
-#include <cstring>
+#ifdef _MSC_VER
+#include <string>  // VisualC++
+#else
+#include <cstring>  // Otherwise
+#endif
 
 namespace stringtools {
 	static std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
@@ -18,7 +22,7 @@ namespace stringtools {
   		}
   		return mainString;
   	}
-  	
+
   	static int IntConverter(const char *s) {
   		int sum = 0;
   		char ch;
@@ -32,11 +36,11 @@ namespace stringtools {
   		}
   		return sum;
 	}
-	
+
 	static int IntConverterWithWhitespace(char* s) {
 		int sum = 0;
   		char ch;
-  		std::string conv(s); 
+  		std::string conv(s);
   		s = const_cast<char*>(EraseAllSubString(conv, " ").c_str());
  		char sign = *s;
  		if (*s == '-' || *s == '+') s++;
@@ -48,7 +52,7 @@ namespace stringtools {
   		}
   		return sum;
 	}
-	
+
 	int Count(std::string s, char ch) {
   		int count = 0;
 
@@ -57,33 +61,68 @@ namespace stringtools {
 
   		return count;
 	}
-	
-	static std::string GetBetweenString(std::string oStr, std::string sStr1, std::string sStr2) {  
-    		int start = oStr.find(sStr1);   
-    		if (start >= 0) {       
-     			std::string tstr = oStr.substr(start + sStr1.length());        
-      			int stop = tstr.find(sStr2);      
-      			if (stop >1)          
+
+	static std::string GetBetweenString(std::string oStr, std::string sStr1, std::string sStr2) {
+    		int start = oStr.find(sStr1);
+    		if (start >= 0) {
+     			std::string tstr = oStr.substr(start + sStr1.length());
+      			int stop = tstr.find(sStr2);
+      			if (stop >1)
         			return oStr.substr(start + sStr1.length(), stop);
       			else
-        			return "error";  
+        			return "error";
     		}
     		else
-       		return "error"; 
-	}	
-	
-	static void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {  
-    		int start = oStr.find(sStr1);   
-    		if (start >= 0) {       
-      		std::string tstr = oStr.substr(start + sStr1.length());        
-      		int stop = tstr.find(sStr2);      
-      		if (stop >1)          
+       		return "error";
+	}
+
+	static void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {
+    		int start = oStr.find(sStr1);
+    		if (start >= 0) {
+      		std::string tstr = oStr.substr(start + sStr1.length());
+      		int stop = tstr.find(sStr2);
+      		if (stop >1)
         		rStr = oStr.substr(start + sStr1.length(), stop);
       		else
-        		rStr ="error";  
+        		rStr ="error";
     		}
     		else
-       		rStr = "error"; 
+       		rStr = "error";
+	}
+
+	static std::string Add(std::string a, std::string b) {
+    std::string temp = "";
+
+    int carry = 0;
+
+    while (a.length() < b.length()) {
+        a = "0" + a;
+    }
+
+    while (b.length() < a.length()) {
+        b = "0" + b;
+    }
+
+    for (int i = a.length() - 1; i >= 0; i--) {
+        char val = static_cast<char>(((a[i] - 48) + (b[i] - 48)) + 48 + carry);
+        if (val > 57) {
+            carry = 1;
+            val -= 10;
+        } else {
+            carry = 0;
+        }
+        temp = val + temp;
+    }
+
+    if (carry == 1) {
+        temp = "1" + temp;
+    }
+
+    while (temp[0] == '0' && temp.length() > 1) {
+        temp = temp.substr(1);
+    }
+
+    return temp;
 	}
 }
 
