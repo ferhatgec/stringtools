@@ -62,6 +62,34 @@ namespace stringtools {
   		return count;
 	}
 
+	int Counter(const char* str, int type) { // 1 = Vowel, 2 = Consonants, 3 = Numbers, 4 = Special characters
+		int v = 0, c = 0, n = 0, s = 0;
+		for (int i = 0; str[i]!='\0'; ++i) {
+			if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' || str[i] == 'A' ||
+			str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U')
+					++v;
+			else if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
+					++c;
+	    else if (str[i] >= '0' && str[i] <= '9')
+		  		++n;
+		  else
+					++s;
+		}
+
+		if(type == 1)
+			return v;
+		else if(type == 2)
+			return c;
+		else if(type == 3)
+			return n;
+		else if(type == 4)
+			return s;
+		else
+			return v;
+
+		return 0;
+	}
+
 	static std::string GetBetweenString(std::string oStr, std::string sStr1, std::string sStr2) {
     		int start = oStr.find(sStr1);
     		if (start >= 0) {

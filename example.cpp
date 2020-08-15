@@ -8,8 +8,10 @@
 #include "StringTools.hpp"
 
 int main() {
-	std::string betweenstr("#Hello developers!?");
+	/*std::string betweenstr("#Hello developers!?");
 	std::cout << "String between # and ? : " << stringtools::GetBetweenString(betweenstr, "#", "?") << "\n";
-	std::cout << "L character count : " << stringtools::Count(betweenstr, 'l') << "\n"; // 3
+	std::cout << "L character count : " << stringtools::Count(betweenstr, 'l') << "\n"; */
+	int a = stringtools::Counter("Hello StringTools! 1234!@#)_qASD)(#@)$dla:cma><)_", 1);
+	std::cout << a;
 	return 0;
 }
