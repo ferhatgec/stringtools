@@ -23,6 +23,22 @@ namespace stringtools {
   		return mainString;
   	}
 
+	
+	static std::string FindStringWithReturn(std::string file, std::string str) {
+		std::string line;
+    		std::ifstream readfile(file.c_str());
+    		if(readfile.is_open()) {
+        	while (std::getline(readfile, line)) {
+			if(strstr(line.c_str(), str.c_str()))
+				return line + "\n";
+        	}
+        	readfile.close();
+    		} else {
+        		return "error"; /* Unable to open file */
+    		}
+    		return "null"; /* Not found. */
+    	}
+
   	static int IntConverter(const char *s) {
   		int sum = 0;
   		char ch;
@@ -119,38 +135,38 @@ namespace stringtools {
 	}
 
 	static std::string Add(std::string a, std::string b) {
-    std::string temp = "";
+    		std::string temp = "";
 
-    int carry = 0;
+    		int carry = 0;
 
-    while (a.length() < b.length()) {
-        a = "0" + a;
-    }
+    		while (a.length() < b.length()) {
+    		    a = "0" + a;
+    		}
 
-    while (b.length() < a.length()) {
-        b = "0" + b;
-    }
+    		while (b.length() < a.length()) {
+    		    b = "0" + b;
+    		}
 
-    for (int i = a.length() - 1; i >= 0; i--) {
-        char val = static_cast<char>(((a[i] - 48) + (b[i] - 48)) + 48 + carry);
-        if (val > 57) {
-            carry = 1;
-            val -= 10;
-        } else {
-            carry = 0;
-        }
-        temp = val + temp;
-    }
+    		for (int i = a.length() - 1; i >= 0; i--) {
+    		    char val = static_cast<char>(((a[i] - 48) + (b[i] - 48)) + 48 + carry);
+        		if (val > 57) {
+        		    carry = 1;
+        		    val -= 10;
+        		} else {
+        		    carry = 0;
+        		}
+        	  	temp = val + temp;
+    		}
 
-    if (carry == 1) {
-        temp = "1" + temp;
-    }
+   	 	if (carry == 1) {
+        		temp = "1" + temp;
+    		}
 
-    while (temp[0] == '0' && temp.length() > 1) {
-        temp = temp.substr(1);
-    }
+    		while (temp[0] == '0' && temp.length() > 1) {
+        		temp = temp.substr(1);
+    		}
 
-    return temp;
+		return temp;
 	}
 }
 
