@@ -168,6 +168,20 @@ namespace stringtools {
 
 		return temp;
 	}
+	
+	static int Compare(const char* str_1, const char* str_2) {
+		const unsigned char *unsigned_str_1 = (const unsigned char *) str_1;
+		const unsigned char *unsigned_str_2 = (const unsigned char *) str_2;
+
+		while (*unsigned_str_1 == *unsigned_str_2 && 
+			*unsigned_str_1 != '\0') {
+    		
+			unsigned_str_1++;
+    			unsigned_str_2++;
+  		}
+
+  		return (*unsigned_str_1 > *unsigned_str_2) - (*unsigned_str_1 < *unsigned_str_2);
+	}
 }
 
 #endif // STRING_TOOLS_HPP
