@@ -23,22 +23,6 @@ namespace stringtools {
   		return mainString;
   	}
 
-	
-	static std::string FindStringWithReturn(std::string file, std::string str) {
-		std::string line;
-    		std::ifstream readfile(file.c_str());
-    		if(readfile.is_open()) {
-        	while (std::getline(readfile, line)) {
-			if(strstr(line.c_str(), str.c_str()))
-				return line + "\n";
-        	}
-        	readfile.close();
-    		} else {
-        		return "error"; /* Unable to open file */
-    		}
-    		return "null"; /* Not found. */
-    	}
-
 	static void replaceAll(std::string& str, const std::string& from, const std::string& to) {
     		if(from.empty())
         		return;
