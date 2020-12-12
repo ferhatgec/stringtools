@@ -245,6 +245,21 @@ namespace stringtools {
   		
   		return mainString;
   	}
+  	
+  	static std::string GetFirstArg(std::string str) {
+    	std::string word = "";
+    	if(!strstr(str.c_str(), " ")) return str;
+    	
+    	for(auto x : str) {
+        	if (x == ' ') {
+            	break;
+        	} else {
+            	word = word + x;
+        	}
+    	}
+    	
+    	return word;
+	}
 }
 
 #endif // STRING_TOOLS_HPP
