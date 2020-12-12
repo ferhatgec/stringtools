@@ -110,6 +110,7 @@ namespace stringtools {
 		return 0;
 	}
 
+	/* return as string */
 	static std::string GetBetweenString(std::string oStr, std::string sStr1, std::string sStr2) {
     		int start = oStr.find(sStr1);
     		if (start >= 0) {
@@ -138,6 +139,16 @@ namespace stringtools {
        		rStr = "error";
 	}
 
+	/* get first between string from 0.... position. */
+	static std::string Between(const std::string &s, const std::string &start_delim, const std::string &stop_delim) {
+    	unsigned first_delim_pos = s.find(start_delim);
+	    unsigned end_pos_of_first_delim = first_delim_pos + start_delim.length();
+	    unsigned last_delim_pos = s.find_first_of(stop_delim, end_pos_of_first_delim);
+    
+	    return s.substr(end_pos_of_first_delim,
+            last_delim_pos - end_pos_of_first_delim);
+	}
+	
 	static std::string Add(std::string a, std::string b) {
     		std::string temp = "";
 
