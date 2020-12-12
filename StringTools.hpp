@@ -197,6 +197,13 @@ namespace stringtools {
 		return s;
 	}
 	
+	static inline std::string& trim(std::string& s, const char* t = " \t\n\r\f\v") {
+		rtrim(s);
+		ltrim(s);
+		
+		return s;
+	}
+	
 	static bool Find(std::string &data, std::string substring) {
   		size_t check = data.find(substring);
 
